@@ -10,12 +10,12 @@ def pytest_addoption(parser):
 def browser(request):
     language = request.config.getoption("--language")
     browser = None
-    print(f"\nstart chrome browser for test,language:{language}")
+    print(f"\nstart browser for test, language:{language}")
     options = Options()
     options.add_experimental_option('prefs', {'intl.accept_languages': language})
     browser = webdriver.Chrome(options=options)
     browser.implicitly_wait(5)
     yield browser
-    print("\nquit browser..")
+    print("\nquit browser")
     browser.quit()
 
