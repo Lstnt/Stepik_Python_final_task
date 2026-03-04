@@ -16,3 +16,11 @@ class ProductPage(BasePage):
         message = self.browser.find_element(*ProductPageLocators.MESSAGE_PRICE_BASKET).text
         price = self.browser.find_element(*ProductPageLocators.PRICE_PRODUCT).text
         assert message == price, f"Стоимость корзины '{message}', но добавляли товар стоимостью '{price}'"
+
+    def should_not_be_success_message(self):
+        assert self.is_not_element_present(*ProductPageLocators.MESSAGE_PRODUCT_ADDED), \
+            "Есть сообщение об успехе добавления в корзину, но его не должно быть"
+
+    def should_disappear_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.MESSAGE_PRODUCT_ADDED), \
+            "Сообщение об успешном добавлении товара не пропало после ожидания"
